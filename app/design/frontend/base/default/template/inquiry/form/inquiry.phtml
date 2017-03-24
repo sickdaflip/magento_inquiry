@@ -1,0 +1,104 @@
+<div id="inquiry_form" class="std">
+    <div class="page-title">
+        <h4><?php echo $this->__('Inquiry Form') ?></h4>
+    </div>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <div class="row expanded">
+        <div class="small-12 medium-6 columns">
+            <form action="<?php echo Mage::getBaseUrl() . 'inquiry/index/post/'; ?>" method="post" id="inquiry-form" data-abide novalidate>
+                <?php
+                if (Mage::getSingleton('customer/session')->isLoggedIn()) {
+                    $customer = Mage::getSingleton('customer/session')->getCustomer();
+                }
+                $product = Mage::registry('current_product');
+                ?>
+                <input type="hidden" name="sku" value="<?php echo $product->getData('sku'); ?>"/>
+                <input type="hidden" name="customer_id" value="<?php if (!empty($customer)) {
+                    echo $customer->getId();
+                } ?>"/>
+                <input type="hidden" name="wcrl" value="<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>"/>
+                <input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+                <div class="field">
+                    <label for="product_name"><?php echo $this->__('Product'); ?></label>
+                    <input type="text" name="product_name" value="<?php echo $product->getData('name'); ?>" readonly/>
+                </div>
+                <div class="row expanded">
+                    <div class="small-12 medium-6 columns">
+                        <label for="customer_name"><?php echo $this->__('Name'); ?>
+                            <small><?php echo $this->__('required') ?></small>
+                            <input type="text" id="customer_name" name="customer_name"
+                                   value="<?php if (!empty($customer)) {
+                                       echo $customer->getName();
+                                   } ?>" pattern="alpha_numeric" required/>
+                            <span class="form-error"><?php echo $this->__('Please enter your Name.'); ?></span>
+                        </label>
+                    </div>
+                    <div class="small-12 medium-6 columns">
+                        <label for="customer_email"><?php echo $this->__('Email'); ?>
+                            <small><?php echo $this->__('required') ?></small>
+                            <input type="email" id="customer_email" name="customer_email"
+                                   value="<?php if (!empty($customer)) {
+                                       echo $customer->getEmail();
+                                   } ?>" pattern="email" required/>
+                            <span class="form-error"><?php echo $this->__('Please enter your Email.'); ?></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row expanded">
+                    <div class="small-12 medium-6 columns">
+                        <label for="shop_name"><?php echo $this->__('Shop-Name'); ?>
+                            <small><?php echo $this->__('required') ?></small>
+                            <input type="text" id="shop_name" name="shop_name" pattern="alpha_numeric" required/>
+                            <span class="form-error"><?php echo $this->__('Please enter the Shop-Name.'); ?></span>
+                        </label>
+                    </div>
+                    <div class="small-12 medium-6 columns">
+                        <label for="shop_url"><?php echo $this->__('Shop-URL'); ?>
+                            <small><?php echo $this->__('required') ?></small>
+                            <input type="text" id="shop_url" name="shop_url" pattern="alpha_numeric" required/>
+                            <span class="form-error"><?php echo $this->__('Please enter the Shop-URL.'); ?></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row expanded">
+                    <div class="small-12 medium-6 columns">
+                        <label for="shop_price"><?php echo $this->__('Shop-Price'); ?>
+                            <small><?php echo $this->__('required') ?></small>
+                            <div class="input-group">
+                                <input class="input-group-field" type="number" id="shop_price" name="shop_price"
+                                       required/>
+                                <span class="input-group-label">
+                                <?php echo Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol(); ?>
+                            </span>
+                            </div>
+                            <span class="form-error"><?php echo $this->__('Please enter the Shop-Price.'); ?></span>
+                        </label>
+                    </div>
+                    <div class="small-12 medium-6 columns">
+                        <label for="comment"><?php echo $this->__('Comment'); ?>
+                            <textarea id="comment" name="comment"/></textarea>
+                        </label>
+                    </div>
+                </div>
+                <button class="hollow button secondary" type="reset"><?php echo $this->__('Reset') ?></button>
+                <button type="submit" class="button float-right" title="<?php echo $this->__('Send Inquiry') ?>"><?php echo $this->__('Send Inquiry') ?></button>
+            </form>
+        </div>
+        <div class="small-12 medium-6 columns">
+            <p><strong><?php echo $this->__('Have you seen this article somewhere else?') ?></strong></p>
+            <p><?php echo $this->__('No problem. You can simply send us the following information:') ?></p>
+            <ul>
+                <li><?php echo $this->__('Shop-Name') ?></li>
+                <li><?php echo $this->__('Shop-URL') ?></li>
+                <li><?php echo $this->__('Shop-Price') ?></li>
+            </ul>
+            <p><?php echo $this->__('We then check your counter offer. The easiest way to contact us is by using the question to product form (example button see below).') ?></p>
+            <p><strong><?php echo $this->__('Prerequisites for our price guarantee:') ?></strong></p>
+            <ul>
+                <li><?php echo $this->__('The prerequisite is that the article in question is stocked in the shop in the desired size/color/execution. This is checked by us.') ?></li>
+                <li><?php echo $this->__('The best price guarantee does not apply to private sales, auction platforms, bankruptcy sales and other non-regular sales channels.') ?></li>
+                <li><?php echo $this->__('The best price guarantee applies only to Germany.') ?></li>
+            </ul>
+        </div>
+    </div>
+</div>
