@@ -5,7 +5,7 @@
   "description": "Inquiry Form for Products",
   "homepage": "https://github.com/sickdaflip/magento_inquiry",
   "require": {
-    "magento-hackathon/magento-composer-installer": "*",
+    "magento-hackathon/magento-composer-installer": "*"
   },
   "authors": [
     {
