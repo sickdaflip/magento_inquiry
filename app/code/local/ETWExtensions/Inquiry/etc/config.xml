@@ -17,7 +17,7 @@
             <inquiry>
                 <args>
                     <modules>
-                        <ETWExtensions_Inquiry before="Mage_Inquiry">ETWExtensions_Inquiry</ETWExtensions_Inquiry>  
+                        <ETWExtensions_Inquiry>ETWExtensions_Inquiry</ETWExtensions_Inquiry>
                     </modules>
                 </args>
             </inquiry> 
@@ -98,6 +98,11 @@
         </translate>
     </adminhtml>   
     <global>
+        <helpers>
+            <inquiry>
+                <class>ETWExtensions_Inquiry_Helper</class>
+            </inquiry>
+        </helpers>
         <models>
             <inquiry>
                 <class>ETWExtensions_Inquiry_Model</class>
@@ -137,11 +142,6 @@
                 <class>ETWExtensions_Inquiry_Block</class>
             </inquiry>
         </blocks>
-        <helpers>
-            <inquiry>
-                <class>ETWExtensions_Inquiry_Helper</class>
-            </inquiry>
-        </helpers>
         <template>
             <email>
                 <inquiry_notification_admin module="ETWExtensions_Inquiry">
@@ -162,22 +162,4 @@
             </controller_action_predispatch_inquiry_index_post>
         </events>
     </global>
-    <default>
-        <captcha>
-            <frontend>
-                <areas>
-                    <inquiry>
-                        <label>Inquiry</label>
-                    </inquiry>
-                </areas>
-            </frontend>
-        </captcha>
-        <customer>
-            <captcha>
-                <always_for>
-                    <inquiry>1</inquiry>
-                </always_for>
-            </captcha>
-        </customer>
-    </default>
 </config>
