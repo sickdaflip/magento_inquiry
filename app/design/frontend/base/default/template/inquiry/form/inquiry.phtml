@@ -2,7 +2,7 @@
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <div class="row expanded">
         <div class="small-12 medium-6 columns">
-            <form action="<?php echo Mage::getBaseUrl() . 'inquiry/index/post/'; ?>" method="post" id="inquiry-form" data-abide novalidate>
+            <form action="<?php echo Mage::getUrl('inquiry/index/post', array('_secure'=>true)); ?>" method="post" id="inquiry-form" enctype="multipart/form-data" data-abide novalidate>
                 <?php
                 if (Mage::getSingleton('customer/session')->isLoggedIn()) {
                     $customer = Mage::getSingleton('customer/session')->getCustomer();
@@ -14,7 +14,7 @@
                     echo $customer->getId();
                 } ?>"/>
                 <input type="hidden" name="wcrl" value="<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>"/>
-                <input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+                <input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
                 <div class="field">
                     <label for="product_name"><?php echo $this->__('Product'); ?></label>
                     <input type="text" name="product_name" value="<?php echo $product->getData('name'); ?>" readonly/>
@@ -26,7 +26,7 @@
                             <input type="text" id="customer_name" name="customer_name"
                                    value="<?php if (!empty($customer)) {
                                        echo $customer->getName();
-                                   } ?>" pattern="alpha_numeric" required/>
+                                   } ?>" required/>
                             <span class="form-error"><?php echo $this->__('Please enter your Name.'); ?></span>
                         </label>
                     </div>
