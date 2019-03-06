@@ -1,3 +1,6 @@
+<?php
+$product = Mage::registry('current_product');
+if ($product->getAttributeText('manufacturer') != 'Liebherr'): ?>
 <div id="inquiry_form" class="std">
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <div class="row expanded">
@@ -105,3 +108,4 @@
         </div>
     </div>
 </div>
+<?php endif; ?>
