@@ -1,0 +1,63 @@
+<?php
+$product = Mage::registry('current_product');
+?>
+<div id="inquiry_form" class="std">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <div class="row expanded">
+        <div class="small-12 columns">
+            <form action="<?php echo Mage::getUrl('inquiry/index/post', array('_secure'=>true)); ?>" method="post" id="inquiry-form" enctype="multipart/form-data" data-abide novalidate>
+                <?php
+                if (Mage::getSingleton('customer/session')->isLoggedIn()) {
+                    $customer = Mage::getSingleton('customer/session')->getCustomer();
+                }
+                $product = Mage::registry('current_product');
+                ?>
+                <input type="hidden" name="sku" value="<?php echo $product->getData('sku'); ?>"/>
+                <input type="hidden" name="customer_id" value="<?php if (!empty($customer)) {
+                    echo $customer->getId();
+                } ?>"/>
+                <input type="hidden" name="wcrl" value="<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>"/>
+                <input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+                <div class="field">
+                    <label for="product_name"><?php echo $this->__('Product'); ?></label>
+                    <input type="text" name="product_name" value="<?php echo $product->getData('name'); ?>" readonly/>
+                </div>
+                <div class="row expanded">
+                    <div class="small-12 medium-6 columns">
+                        <label for="customer_name"><?php echo $this->__('Name'); ?>
+                            <input type="text" id="customer_name" name="customer_name"
+                                   value="<?php if (!empty($customer)) {
+                                       echo $customer->getName();
+                                   } ?>"/>
+                        </label>
+                    </div>
+                    <div class="small-12 medium-6 columns">
+                        <label for="customer_email"><?php echo $this->__('Email'); ?>
+                            <small><?php echo $this->__('required') ?></small>
+                            <input type="email" id="customer_email" name="customer_email"
+                                   value="<?php if (!empty($customer)) {
+                                       echo $customer->getEmail();
+                                   } ?>" pattern="email" required/>
+                            <span class="form-error"><?php echo $this->__('Please enter your Email.'); ?></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row expanded">
+                    <div class="small-12 medium-6 columns">
+                        <label for="comment"><?php echo $this->__('Comment'); ?>
+                            <textarea id="comment" name="comment"></textarea>
+                        </label>
+                    </div>
+                    <div class="small-12 columns">
+                        <fieldset class="small-12 cell">
+                            <input id="bdsg" name="bdsg" type="checkbox" value="accept" required>
+                            <label for="bdsg"><?php echo $this->__('Ich stimme zu, dass meine Angaben aus dem Kontaktformular zur Beantwortung meiner Anfrage erhoben und verarbeitet werden. Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z.B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Hinweis: Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an datenschutz@newgastroline.de widerrufen. Detaillierte Informationen zum Umgang mit Nutzerdaten finden Sie in unserer <a href="%s">Datenschutzerklärung</a>.', Mage::getUrl('datenschutz')) ?></label>
+                        </fieldset>
+                    </div>
+                </div>
+                <button class="hollow button secondary" type="reset"><?php echo $this->__('Reset') ?></button>
+                <button type="submit" class="button float-right" title="<?php echo $this->__('Send Inquiry') ?>"><?php echo $this->__('Send Inquiry') ?></button>
+            </form>
+        </div>
+    </div>
+</div>
