@@ -1,7 +1,7 @@
 app/code/local/*                                                app/code/local/
 app/design/adminhtml/default/default/layout/inquiry.xml         app/design/adminhtml/default/default/layout/inquiry.xml
 app/design/frontend/base/default/layout/inquiry.xml             app/design/frontend/base/default/layout/inquiry.xml
-app/design/frontend/base/default/template/*                     app/design/frontend/base/default/template/
+app/design/frontend/base/default/template/inquiry               app/design/frontend/base/default/template/inquiry
 app/etc/modules/*.xml                                           app/etc/modules/
 app/locale/en_US/ETWExtensions_Inquiry.csv                      app/locale/en_US/ETWExtensions_Inquiry.csv
 app/locale/en_US/template/email/inquiry_notification_admin.html app/locale/en_US/template/email/inquiry_notification_admin.html

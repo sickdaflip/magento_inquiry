@@ -30,6 +30,9 @@ $product = Mage::registry('current_product');
                                        echo $customer->getName();
                                    } ?>"/>
                         </label>
+                        <label for="customer_phone"><?php echo $this->__('Telefon'); ?>
+                            <input type="number" id="customer_phone" name="customer_phone" />
+                        </label>
                     </div>
                     <div class="small-12 medium-6 columns">
                         <label for="customer_email"><?php echo $this->__('Email'); ?>
@@ -45,7 +48,7 @@ $product = Mage::registry('current_product');
                 <div class="row expanded">
                     <div class="small-12 medium-6 columns">
                         <label for="comment"><?php echo $this->__('Comment'); ?>
-                            <textarea id="comment" name="comment"></textarea>
+                            <textarea id="comment" name="comment" placeholder="<?php echo $this->__('Bitte bieten Sie mir den aktuellen GASTRODAX-Tagespreis an.'); ?>"></textarea>
                         </label>
                     </div>
                     <div class="small-12 columns">

@@ -51,10 +51,11 @@ class ETWExtensions_Inquiry_IndexController extends Mage_Core_Controller_Front_A
 
     private function notifyAdmin($post) {
         $mailSubject = 'Product Inquiry';
-        $adminEmail = Mage::getStoreConfig('trans_email/ident_general/email');
-        $adminName = Mage::getStoreConfig('trans_email/ident_general/name');
+        $adminEmail = Mage::getStoreConfig('trans_email/ident_sales/email');
+        $adminName = Mage::getStoreConfig('trans_email/ident_sales/name');
         $storeName = Mage::app()->getStore()->getName();
         $vars = array('customerName' => $post['customer_name'],
+            'customer_phone' => $post['customer_phone'],
             'customerEmail' => $post['customer_email'],
             'sku' => $post['sku'],
             'comment' => $post['comment'],
