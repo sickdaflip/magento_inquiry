@@ -58,9 +58,7 @@ class ETWExtensions_Inquiry_IndexController extends Mage_Core_Controller_Front_A
             'customerPhone' => $post['customer_phone'],
             'customerEmail' => $post['customer_email'],
             'sku' => $post['sku'],
-            'comment' => $post['comment'],
-            'adminName' => $adminName,
-            'storeName' => $storeName
+            'comment' => $post['comment']
         );
 
         $emailTemplate = Mage::getModel('core/email_template');
