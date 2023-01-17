@@ -1,4 +1,4 @@
-app/code/local/*                                                app/code/local/
+app/code/local/ETWExtensions/Inquiry                            app/code/local/ETWExtensions/Inquiry
 app/design/adminhtml/default/default/layout/inquiry.xml         app/design/adminhtml/default/default/layout/inquiry.xml
 app/design/frontend/base/default/layout/inquiry.xml             app/design/frontend/base/default/layout/inquiry.xml
 app/design/frontend/base/default/template/inquiry               app/design/frontend/base/default/template/inquiry
